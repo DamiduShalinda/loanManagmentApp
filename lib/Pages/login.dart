@@ -24,29 +24,38 @@ class _LoginState extends State<Login> {
         padding: const EdgeInsets.only(top: 100, left: 40, right: 40),
         child: Column(
           children: [
-             TextField(
-              controller: logInController.usernameController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Username'
+             Padding(
+               padding: const EdgeInsets.all(10.0),
+               child: TextField(
+                controller: logInController.usernameController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Username'
+                ),
+                         ),
+             ),
+             Padding(
+               padding: const EdgeInsets.all(10.0),
+               child: TextField(
+                controller: logInController.passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Password'
+                ),
+                         ),
+             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  if (kDebugMode) {
+                    print("clicked");
+                  }
+                  logInController.logInWithUsername();
+                  },
+                child: const Text('Login'),
               ),
-            ),
-             TextField(
-              controller: logInController.passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Password'
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (kDebugMode) {
-                  print("clicked");
-                }
-                logInController.logInWithUsername();
-                },
-              child: const Text('Login'),
             ),
           ],
         ),

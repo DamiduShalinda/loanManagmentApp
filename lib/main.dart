@@ -3,7 +3,10 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:loan_managment_app/Pages/login.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp
+  ( 
+     const MyApp()
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -11,8 +14,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
-      home: SafeArea(
+    return   GetMaterialApp(
+      
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: const Color.fromARGB(255, 21, 31, 44),
+          secondary: const Color.fromARGB(255, 32, 101, 30),
+        )
+      ),
+      
+      debugShowCheckedModeBanner: false,
+      
+      home: const SafeArea(
         child: Scaffold(
         resizeToAvoidBottomInset: false,
           body: Login(),
