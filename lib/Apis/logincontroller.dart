@@ -3,10 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:loan_managment_app/api_endpoints.dart';
 import 'package:http/http.dart' as http;
-import 'package:loan_managment_app/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../Pages/home.dart';
 
 class LogInController extends GetxController {
    TextEditingController usernameController = TextEditingController();
@@ -32,6 +34,8 @@ class LogInController extends GetxController {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('access', accessToken);
         await prefs.setString('refresh', refreshToken);
+        Map <String , dynamic> decodedToken = JwtDecoder.decode(accessToken);
+        bool hasexpired = JwtDecoder.isExpired(accessToken);
         Get.off(() => const HomeScreen());
       }else {
         usernameController.clear();

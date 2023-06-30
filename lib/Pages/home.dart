@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loan_managment_app/login.dart';
+import 'package:loan_managment_app/drawer.dart';
+import 'package:loan_managment_app/Pages/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
         TextButton(
             onPressed: () async {
               final SharedPreferences prefs = await _prefs;
-              prefs?.clear();
+              prefs.clear();
               Get.offAll(() => const Login());
             },
             child: const Text(
@@ -36,13 +37,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () async {
                       final SharedPreferences prefs = await _prefs;
                       if (kDebugMode) {
-                        print(prefs?.get('access'));
+                        print(prefs.get('access'));
                       }
                       },
                      child: const Text('print token'))
                 ],
             ),
             ),
+            drawer: const SimpleDrawer()
     );
 
   }
