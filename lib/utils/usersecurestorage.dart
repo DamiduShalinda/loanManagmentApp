@@ -4,10 +4,10 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class UserSecureStorage {
 
    static const  _storage = FlutterSecureStorage();
-   static const _acessTokenKey = 'acess';
+   static const _acessTokenKey = 'access';
    static const _refreshTokenKey = 'refresh';
 
-    static Future setAcessToken (dynamic token) async => 
+    static Future setAcessToken (String token) async => 
         await _storage.write(key: _acessTokenKey, value: token);
 
     static Future<String?> getAcessToken () async =>

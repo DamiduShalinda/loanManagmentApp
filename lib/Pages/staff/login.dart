@@ -16,9 +16,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(
-        title: const Text("Login"),
-      ),
+      
       resizeToAvoidBottomInset: false,
       body:  Padding(
         padding: const EdgeInsets.only(top: 100, left: 40, right: 40),
@@ -30,7 +28,7 @@ class _LoginState extends State<Login> {
                 controller: logInController.usernameController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Username'
+                  labelText: 'Username'
                 ),
                          ),
              ),
@@ -41,7 +39,7 @@ class _LoginState extends State<Login> {
                 obscureText: true,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Password'
+                  labelText: 'Password'
                 ),
                          ),
              ),

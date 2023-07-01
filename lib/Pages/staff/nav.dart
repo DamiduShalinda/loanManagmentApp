@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:loan_managment_app/Pages/home.dart';
-import 'package:loan_managment_app/Pages/search.dart';
-import 'package:loan_managment_app/Pages/user.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'login.dart';
+import 'package:loan_managment_app/Pages/staff/search.dart';
+import 'package:loan_managment_app/Pages/staff/user.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+
+import 'home.dart';
 
 class NavPage extends StatefulWidget {
   const NavPage({super.key});
@@ -15,7 +13,6 @@ class NavPage extends StatefulWidget {
 }
 
 class _NavPageState extends State<NavPage> {
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     HomeScreen(), Search() , UserAccount()
@@ -23,18 +20,9 @@ class _NavPageState extends State<NavPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(actions: [
-        TextButton(
-            onPressed: () async {
-              final SharedPreferences prefs = await _prefs;
-              prefs.clear();
-              Get.offAll(() => const Login());
-            },
-            child: const Text(
-              'logout',
-              style: TextStyle(color: Colors.white),
-            ))
-      ]),
+      appBar: AppBar(
+        title: const Text('Loan Management App'),
+      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

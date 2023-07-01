@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loan_managment_app/Widgets/ListView.dart';
-import '../Apis/listallloancontroller.dart';
+import '../../Apis/listallloancontroller.dart';
 
 
 class ListLoans extends StatefulWidget {

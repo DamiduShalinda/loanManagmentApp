@@ -4,11 +4,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:loan_managment_app/Pages/nav.dart';
+import 'package:loan_managment_app/Pages/staff/nav.dart';
 import 'package:loan_managment_app/api_endpoints.dart';
 import 'package:http/http.dart' as http;
 import 'package:loan_managment_app/utils/usersecurestorage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../Pages/customer/navforcustomer.dart';
 
 
 class LogInController extends GetxController {
@@ -35,13 +37,20 @@ class LogInController extends GetxController {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('access', accessToken);
         await prefs.setString('refresh', refreshToken);
-        UserSecureStorage.setAcessToken(accessToken);
-        UserSecureStorage.setRefreshToken(refreshToken);
+        UserSecureStorage.setAcessToken(accessToken.toString());
+        UserSecureStorage.setRefreshToken(refreshToken.toString());
         Map <String , dynamic> decodedToken = JwtDecoder.decode(accessToken);
+        await prefs.setString('user_type', decodedToken['user_type']);
         if (kDebugMode) {
-          print(decodedToken['user_id']);
+          print(decodedToken['user_type']);
+          print(UserSecureStorage());
         }
-        Get.off(() => const NavPage());
+
+        if (decodedToken['user_type'] == 'customer'){
+            Get.off(() => const NavPageCustomer());
+        }else if (decodedToken['user_type'] == 'manager'){
+            Get.off(() => const NavPage());
+        }
       }else {
         usernameController.clear();
         passwordController.clear();

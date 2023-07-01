@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loan_managment_app/Pages/listloans.dart';
+import 'listloans.dart';
 
 class Search extends StatelessWidget {
   const Search({super.key});
