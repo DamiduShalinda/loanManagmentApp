@@ -6,4 +6,5 @@ class ApiEndPoints {
 class AuthEndPoints {
   final String loginUsername = 'users/token';
   final String listallloans = 'loans/getloans';
+  String getMoreLoanDetails(int id) => 'loans/getloans/$id';
 }

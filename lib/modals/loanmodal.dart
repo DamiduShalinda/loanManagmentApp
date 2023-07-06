@@ -7,6 +7,7 @@ class Loan {
   final String loanedDate;
   final String branchLocation;
   final double loanedAmount;
+  final String loanNumber;
 
   Loan({
     required this.loanId,
@@ -14,6 +15,7 @@ class Loan {
     required this.loanedDate,
     required this.branchLocation,
     required this.loanedAmount,
+    required this.loanNumber,
   });
 
   factory Loan.fromJson(Map<String, dynamic> json) {
@@ -23,6 +25,7 @@ class Loan {
       loanedDate: json['loaned_date'],
       branchLocation: json['branch_location'],
       loanedAmount: double.parse(json['loaned_amount']),
+      loanNumber: json['loan_number'],
     );
   }
 

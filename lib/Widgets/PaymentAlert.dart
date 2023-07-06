@@ -1,7 +1,26 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import  'package:intl/intl.dart';
 
-class PaymentAlert extends StatelessWidget {
-  const PaymentAlert({super.key});
+class PaymentAlert extends StatefulWidget {
+   const PaymentAlert({super.key});
+
+  @override
+  State<PaymentAlert> createState() => _PaymentAlertState();
+}
+
+class _PaymentAlertState extends State<PaymentAlert> {
+  final TextEditingController _amountController = TextEditingController();
+
+  String cdate = DateFormat("yyyy-MM-dd").format(DateTime.now());
+
+  void _updateValues(context) {
+    Navigator.pop(context, 'OK');
+    if (kDebugMode) {
+      print('Payment Amount: ${_amountController.text}' +
+          '\nDate: $cdate');
+  
+    }}
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +44,10 @@ class PaymentAlert extends StatelessWidget {
                         Container(
                           margin: const EdgeInsets.only(bottom: 10),
                           width: 300,
-                          child: const TextField(
-                            decoration: InputDecoration(
+                          child:  TextField(
+                            keyboardType: TextInputType.number,
+                            controller: _amountController,
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Payment Amount',
                             ),
@@ -40,7 +61,7 @@ class PaymentAlert extends StatelessWidget {
                         child: const Text('Cancel'),
                       ),
                       TextButton(
-                        onPressed: () => Navigator.pop(context, 'OK'),
+                        onPressed: () => _updateValues(context),
                         child: const Text('OK'),
                       ),
                     ],
