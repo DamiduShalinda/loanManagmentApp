@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loan_managment_app/Apis/getmoreloandetails.dart';
-import 'package:loan_managment_app/api_endpoints.dart';
 import 'package:loan_managment_app/modals/allloandetailsmodal.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,24 +13,35 @@ class MoreDetails extends StatefulWidget {
   State<MoreDetails> createState() => _MoreDetailsState();
 }
 
+//TODO Add a structure to display the details of the loan
+
 class _MoreDetailsState extends State<MoreDetails> {
 
   var errorMessage = "".obs;
-  late MoreLoanDetails moreLoanDetails;
-
+  String titleText = "Loan Details";
+  late String bikeNumber , branchLocation , firstGuarantor , loanedDate , loanNumber , secondGuarantor , username;
   void _onclick() {
     fetchLoanDetails(widget.id);
+    titleText = loanNumber;
+
   }
 
   void fetchLoanDetails(int id) async {
     print("hello");
   try {
-    var url = Uri.parse(ApiEndPoints.baseUrl + ApiEndPoints.authEndPoints.getMoreLoanDetails(id));
+    var url = Uri.parse("http://10.0.2.2:8000/loans/getloans/$id");
     http.Response response = await http.get(url);
     if (response.statusCode == 200) {
-       var data = jsonDecode(response.body);
-       var res = [data];
-      print(res[0]);
+      var body = jsonDecode(response.body);
+      print(body);
+      bikeNumber = body['bike_number'];
+      branchLocation = body['branch_location'];
+      firstGuarantor = body['first_guarantor'];
+      loanedDate = body['loaned_date'];
+      loanNumber = body['loan_number'];
+      secondGuarantor = body['second_guarantor'];
+      username = body['username'];
+      print(bikeNumber);
     } else {
       errorMessage("Something went wrong");
     }
@@ -54,7 +63,7 @@ class _MoreDetailsState extends State<MoreDetails> {
             expandedHeight: 400,
             flexibleSpace:  FlexibleSpaceBar(
               centerTitle: true,
-              title: Text(widget.id.toString()),
+              title: Text(titleText ),
               
             ),
             pinned: true,
