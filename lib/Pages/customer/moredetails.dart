@@ -5,6 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loan_managment_app/Apis/listmoredetails.dart';
 
+
+TextStyle textStyle =  const TextStyle(
+  fontSize: 16,
+  fontWeight: FontWeight.bold,
+  color: Colors.white
+);
+
 class MoreDetails extends StatefulWidget {
   final LoanData loanData;
   const MoreDetails({super.key, required this.loanData});
@@ -33,19 +40,27 @@ class _MoreDetailsState extends State<MoreDetails> {
         slivers: [
           SliverAppBar(
             leading: IconButton(
-              onPressed: (){}, 
+              onPressed: (){
+                Get.back();
+              }, 
               icon: const Icon(Icons.arrow_back)
             ),
             expandedHeight: 400,
             flexibleSpace:  FlexibleSpaceBar(
               title: Text(loanData.loanNumber),
-              background: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20 ,vertical: 50),
+              background:  Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20 ,vertical: 50),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Title"),
-                    Text("Subtitle")
+                    Text(
+                      loanData.username,
+                      style: textStyle,
+                      ),
+                    Text(
+                      loanData.bikeNumber,
+                      style: textStyle,
+                      )
                   ],
                 ),
               ),

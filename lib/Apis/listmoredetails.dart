@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:loan_managment_app/api_endpoints.dart';
 
 class LoanData {
   String bikeNumber;
@@ -38,7 +39,7 @@ class LoanData {
 Future<LoanData> fetchOneLoanData(int id) async {
   var errorMessage = "".obs;
   try {
-    var url = Uri.parse("http://10.0.2.2:8000/loans/getloans/$id");
+    var url = Uri.parse(ApiEndPoints.baseUrl + ApiEndPoints.authEndPoints.getMoreLoanDetails(id));
     http.Response response = await http.get(url);
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
