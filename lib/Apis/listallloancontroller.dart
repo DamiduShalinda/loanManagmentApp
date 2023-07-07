@@ -9,17 +9,20 @@ class ListAllLoanController extends GetxController {
   List<Loan> loanList = <Loan>[];
 
 
- Future<void> fetchListAllLoan() async {
+ Future<List<Loan>> fetchListAllLoan() async {
     try {
       var url = Uri.parse(ApiEndPoints.baseUrl + ApiEndPoints.authEndPoints.listallloans);
       http.Response response = await http.get(url);
       if (response.statusCode == 200) {
         loanList = fetchList(response);
+        return loanList ;
       } else {
         errorMessage("Something went wrong");
+        return [];
       }
     } catch (e) {
       errorMessage(e.toString());
+      return [];
     } 
   }
 }
