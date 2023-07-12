@@ -51,7 +51,7 @@ class LoanListView extends StatelessWidget {
                 icon: const Icon(Icons.payments_outlined),
                 onPressed: () => showDialog<String>(
                   context: context,
-                  builder: (BuildContext context) =>  const PaymentAlert()
+                  builder: (BuildContext context) =>  PaymentAlert(id:int.parse(loan.loanId),)
                 ),
               )
           ),

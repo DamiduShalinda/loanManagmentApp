@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loan_managment_app/Apis/logincontroller.dart';
 
@@ -107,9 +106,6 @@ class _LoginState extends State<Login> {
                       vertical: 12.0, horizontal: 32.0),
                 ),
                 onPressed: () {
-                  if (kDebugMode) {
-                    print("clicked");
-                  }
                   logInController.logInWithUsername();
                   _submitForm();
                   },
@@ -134,7 +130,6 @@ class _LoginState extends State<Login> {
       // Perform form submission logic here
 
       // Do something with the form data
-      print('Username:');
 
       // Reset the form
       _formKey.currentState?.reset();

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import  'package:intl/intl.dart';
 
 class PaymentAlert extends StatefulWidget {
-   const PaymentAlert({super.key});
+  final int id;
+  const PaymentAlert({super.key, required this.id});
 
   @override
   State<PaymentAlert> createState() => _PaymentAlertState();
@@ -11,14 +12,21 @@ class PaymentAlert extends StatefulWidget {
 
 class _PaymentAlertState extends State<PaymentAlert> {
   final TextEditingController _amountController = TextEditingController();
+  late int id;
 
   String cdate = DateFormat("yyyy-MM-dd").format(DateTime.now());
+
+  @override
+  void initState() {
+    super.initState();
+    id = widget.id;
+  }
 
   void _updateValues(context) {
     Navigator.pop(context, 'OK');
     if (kDebugMode) {
       print('Payment Amount: ${_amountController.text}' +
-          '\nDate: $cdate');
+          '\nDate: $cdate\nID: $id');
   
     }}
 

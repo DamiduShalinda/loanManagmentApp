@@ -40,15 +40,14 @@ class LogInController extends GetxController {
         UserSecureStorage.setAcessToken(accessToken.toString());
         UserSecureStorage.setRefreshToken(refreshToken.toString());
         Map <String , dynamic> decodedToken = JwtDecoder.decode(accessToken);
-        await prefs.setString('user_type', decodedToken['user_type']);
+        await prefs.setString('usertype', decodedToken['usertype']);
         if (kDebugMode) {
-          print(decodedToken['user_type']);
-          print(UserSecureStorage());
+          print(decodedToken['usertype']);
         }
 
-        if (decodedToken['user_type'] == 'customer'){
+        if (decodedToken['usertype'] == 'customer'){
             Get.off(() => const NavPageCustomer());
-        }else if (decodedToken['user_type'] == 'manager'){
+        }else if (decodedToken['usertype'] == 'staff'){
             Get.off(() => const NavPage());
         }
       }else {
