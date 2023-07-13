@@ -1,9 +1,29 @@
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+
+import '../api_endpoints.dart';
+
+class UserNameData {
+  final String username;
+  final int id;
+
+  UserNameData({
+    required this.username,
+    required this.id,
+  });
+
+  factory UserNameData.fromJson(Map<String, dynamic> json) {
+    return UserNameData(
+      username: json['name'],
+      id: json['id'],
+    );
+  }
+}
 
 class Loan {
   final String loanId;
-  final String username;
+  final UserNameData username;
   final String loanedDate;
   final String branchLocation;
   final double loanedAmount;
@@ -18,10 +38,11 @@ class Loan {
     required this.loanNumber,
   });
 
+
   factory Loan.fromJson(Map<String, dynamic> json) {
     return Loan(
       loanId: json['loan_id'],
-      username: json['username'],
+      username: UserNameData.fromJson(json['username']),
       loanedDate: json['loaned_date'],
       branchLocation: json['branch_location'],
       loanedAmount: double.parse(json['loaned_amount']),
@@ -31,11 +52,33 @@ class Loan {
 
 }
 
-List<Loan> fetchList( http.Response response) {
-  List<dynamic> laonList = jsonDecode(response.body);
+Future <List<Loan>> fetchList()  async {
+
+  var url = Uri.parse(ApiEndPoints.baseUrl + ApiEndPoints.authEndPoints.listallloans);
+  http.Response response = await http.get(url);
+  if (response.statusCode == 200) {
+    
+  List<dynamic> loanList = jsonDecode(response.body);
   List<Loan> loans = [];
-  for (var element in laonList) {
-    loans.add(Loan.fromJson(element));
+
+  for (var element in loanList) {
+    Map<String, dynamic> json = Map<String, dynamic>.from(element);
+
+    UserNameData usernameData = UserNameData.fromJson(json['username']);
+    Loan loan = Loan(
+      loanId: json['loan_id'],
+      username: usernameData,
+      loanedDate: json['loaned_date'],
+      branchLocation: json['branch_location'],
+      loanedAmount: double.parse(json['loaned_amount']),
+      loanNumber: json['loan_number'],
+    );
+
+    loans.add(loan);
   }
+
   return loans;
+  } else {
+    return [];
+  }
 }

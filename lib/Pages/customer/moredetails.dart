@@ -51,7 +51,7 @@ class _MoreDetailsState extends State<MoreDetails> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      loanData.username,
+                      loanData.loanNumber,
                       style: textStyle,
                       ),
                     Text(

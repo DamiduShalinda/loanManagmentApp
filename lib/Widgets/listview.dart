@@ -43,7 +43,7 @@ class LoanListView extends StatelessWidget {
               ),
               title: Text(loan.loanNumber),
               subtitle: Text(
-                  'Username: ${loan.username}\n'
+                  'Username: ${loan.username.username}\n'
                   'Loaned Amount: ${loan.loanedAmount.toStringAsFixed(2)}'
                   ),
               trailing: IconButton(

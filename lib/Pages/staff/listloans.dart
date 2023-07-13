@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:loan_managment_app/Widgets/ListView.dart';
-import '../../Apis/listallloancontroller.dart';
+import 'package:loan_managment_app/modals/loanmodal.dart';
 
 
 class ListLoans extends StatefulWidget {
@@ -13,7 +12,7 @@ class ListLoans extends StatefulWidget {
 
 class _ListLoansState extends State<ListLoans> with WidgetsBindingObserver {
   
-  ListAllLoanController listAllLoanController = Get.put(ListAllLoanController());
+
 
   @override
   void initState() {
@@ -25,10 +24,10 @@ class _ListLoansState extends State<ListLoans> with WidgetsBindingObserver {
     return Scaffold(
       body:  Center(
         child: FutureBuilder(
-          future: listAllLoanController.fetchListAllLoan(),
+          future: fetchList(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return LoanListView(loanList: listAllLoanController.loanList);
+              return LoanListView(loanList: snapshot.data!);
             } else if (snapshot.hasError){
               return Text("Error : ${snapshot.error}");
             } else{

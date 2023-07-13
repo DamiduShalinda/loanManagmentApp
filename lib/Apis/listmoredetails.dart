@@ -5,33 +5,42 @@ import 'package:http/http.dart' as http;
 import 'package:loan_managment_app/api_endpoints.dart';
 
 class LoanData {
-  String bikeNumber;
-  String branchLocation;
-  String firstGuarantor;
-  String loanedDate;
+  int id;
   String loanNumber;
-  String secondGuarantor;
-  String username;
+  String loanedDate;
+  String branchLocation;
+  double loanedAmount;
+  String bikeNumber;
+  int loanPeriod;
+  int username;
+  int firstGuarantor;
+  int secondGuarantor;
 
   LoanData({
-    required this.bikeNumber,
-    required this.branchLocation,
-    required this.firstGuarantor,
-    required this.loanedDate,
+    required this.id,
     required this.loanNumber,
-    required this.secondGuarantor,
+    required this.loanedDate,
+    required this.branchLocation,
+    required this.loanedAmount,
+    required this.bikeNumber,
+    required this.loanPeriod,
     required this.username,
+    required this.firstGuarantor,
+    required this.secondGuarantor,
   });
 
   factory LoanData.fromJson(Map<String, dynamic> json) {
     return LoanData(
-      bikeNumber: json['bike_number'],
-      branchLocation: json['branch_location'],
-      firstGuarantor: json['first_guarantor'],
-      loanedDate: json['loaned_date'],
+      id: json['loan_id'],
       loanNumber: json['loan_number'],
-      secondGuarantor: json['second_guarantor'],
+      loanedDate: json['loaned_date'],
+      branchLocation: json['branch_location'],
+      loanedAmount: json['loaned_amount'],
+      bikeNumber: json['bike_number'],
+      loanPeriod: json['loan_period'],
       username: json['username'],
+      firstGuarantor: json['first_guarantor'],
+      secondGuarantor: json['second_guarantor'],
     );
   }
 }
@@ -42,8 +51,11 @@ Future<LoanData> fetchOneLoanData(int id) async {
     var url = Uri.parse(ApiEndPoints.baseUrl + ApiEndPoints.authEndPoints.getMoreLoanDetails(id));
     http.Response response = await http.get(url);
     if (response.statusCode == 200) {
+      print(response.body);
       var body = jsonDecode(response.body);
-      return LoanData.fromJson(body);
+      LoanData loanData = LoanData.fromJson(body);
+      print(loanData.bikeNumber);
+      return loanData;
     } else {
       errorMessage("Something went wrong");
       throw Exception("Something went wrong"); // Throw an exception to indicate an error
