@@ -7,7 +7,8 @@ import '../staff/login.dart';
 import 'homescreencustomer.dart';
 
 class NavPageCustomer extends StatefulWidget {
-  const NavPageCustomer({super.key});
+  final int id;
+  const NavPageCustomer({Key? key, required this.id}) : super(key: key);
 
   @override
   State<NavPageCustomer> createState() => _NavPageCustomerState();
@@ -15,18 +16,31 @@ class NavPageCustomer extends StatefulWidget {
 
 class _NavPageCustomerState extends State<NavPageCustomer> {
 
+  late int id;
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
+  @override
+  void initState() {
+    super.initState();
+    id = widget.id;
+  }
+
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
-    HomescreenCustomer(), DetailsCustomer()
-  ];
+  late List<Widget> _widgetOptions;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _widgetOptions = <Widget>[
+      HomescreenCustomer(id: id),
+      const DetailsCustomer(),
+    ];
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Loan Management App'),
-        backgroundColor: Colors.black,
         actions: [
           IconButton(
             onPressed: () async {
