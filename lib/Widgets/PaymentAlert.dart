@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import  'package:intl/intl.dart';
+import 'package:loan_managment_app/Apis/makeapaymentcontroller.dart';
 
 class PaymentAlert extends StatefulWidget {
   final int id;
@@ -13,6 +14,7 @@ class PaymentAlert extends StatefulWidget {
 class _PaymentAlertState extends State<PaymentAlert> {
   final TextEditingController _amountController = TextEditingController();
   late int id;
+  late PaymentDetails _paymentDetails;
 
   String cdate = DateFormat("yyyy-MM-dd").format(DateTime.now());
 
@@ -23,12 +25,12 @@ class _PaymentAlertState extends State<PaymentAlert> {
   }
 
   void _updateValues(context) {
+    _paymentDetails.loanNumber = id;
+    _paymentDetails.paymentDate = cdate;
+    _paymentDetails.paymentAmount =  int.parse(_amountController.text);
     Navigator.pop(context, 'OK');
-    if (kDebugMode) {
-      print('Payment Amount: ${_amountController.text}' +
-          '\nDate: $cdate\nID: $id');
-  
-    }}
+    sendPaymentDetails(_paymentDetails);
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +45,6 @@ class _PaymentAlertState extends State<PaymentAlert> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       
                       children: [
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 10),
-                          child:  const Text('Monthly Payment:')),
                         Container(
                           margin: const EdgeInsets.only(bottom: 30),
                           child:  const Text('Enter the payment amount:')),

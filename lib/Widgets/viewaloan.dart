@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loan_managment_app/Apis/getcustomerloancontroller.dart';
+import 'package:loan_managment_app/Widgets/PaymentAlert.dart';
 import 'package:loan_managment_app/Widgets/loanpaymentlist.dart';
+
+import 'ViewOneArrears.dart';
 
 class ViewaLoan extends StatelessWidget {
   final CustomerLoanData loanData;
@@ -12,30 +15,78 @@ class ViewaLoan extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(
-              child: Column(
-                children: [
-                  Text("Loan ID : ${loanData.loannumber}"),
-                  Text("Loan Amount : ${loanData.loanedamount.toString()}"),
-                  TextButton(
-                    onPressed: (){},
-                    style: TextButton.styleFrom(
-                      primary: Colors.white,
-                      backgroundColor: Colors.blue,
-                      onSurface: Colors.grey,
-                      elevation: 2
-              ), 
-                    child: const Text("Pay a payment"),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  side: BorderSide(color: Colors.grey.shade200)
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        loanData.loannumber,
+                        style: const TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
                         ),
-                ],
+                        ),
+                        const SizedBox(height: 10,),
+                      Text(
+                        "Amount : ${loanData.loanedamount.toString()}",
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
+                        ),
+                      const SizedBox(height: 10,),
+                      TextButton(
+                        onPressed: (){
+                          Get.to(() => PaymentAlert(id: loanData.loanID));
+                        },
+                        style: TextButton.styleFrom(
+                          primary: Colors.white,
+                          backgroundColor: const Color.fromARGB(255, 21, 31, 44),
+                          onSurface: Colors.grey,
+                          elevation: 2
+                          ), 
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 3.0),
+                          child: Text("Pay a payment"),
+                        ),
+                            ),
+                    ],
+                  ),
+                ),
               ),
             ),
-            TextButton(
-            onPressed: () {
-                  Get.to(() => LoanPaymentsList(id: loanData.loanID));
-            }, 
-            child: const Text("View Payments"),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              child: ViewOneArrears(id: loanData.loanID)
+            ),
+            const Expanded(child: SizedBox(height: 10)),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextButton(
+              style: TextButton.styleFrom(
+                            primary: Colors.white,
+                            backgroundColor: const Color.fromARGB(255, 21, 31, 44),
+                            onSurface: Colors.grey,
+                            elevation: 2
+                            ), 
+              onPressed: () {
+                    Get.to(() => LoanPaymentsList(id: loanData.loanID));
+              }, 
+              child: const Padding(
+                padding: EdgeInsets.symmetric(vertical: 3.0),
+                child: Text("View Payments"),
+              ),
+              ),
             )
           ],
         ),

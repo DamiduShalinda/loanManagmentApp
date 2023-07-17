@@ -23,16 +23,20 @@ class LoanPaymentView extends StatelessWidget {
           Text("Principal : ${loanPayments.principle.toString()}"),
           Text("Balance : ${loanPayments.balance.toString()}"),
           const SizedBox(height: 20),
-          TextButton.icon(
-            style: TextButton.styleFrom(
-              padding: const EdgeInsets.all(10),
-              primary: Colors.white,
-              backgroundColor: Colors.blue,
-              onSurface: Colors.grey,
-            ),
-            onPressed: () => Navigator.pop(context), 
-            icon: const Icon(Icons.close), 
-            label: const Text("Close") )
+          Row(
+            children: [
+              SizedBox(width: MediaQuery.of(context).size.width * 0.5),
+              TextButton(
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.all(10),
+                  primary: Colors.white,
+                  backgroundColor: Colors.blue,
+                  onSurface: Colors.grey,
+                ),
+                onPressed: () => Navigator.pop(context), 
+                child: const Text("Close") ),
+            ],
+          )
         ],
       ),
     );

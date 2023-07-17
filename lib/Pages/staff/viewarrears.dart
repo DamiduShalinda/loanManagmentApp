@@ -5,17 +5,13 @@ import 'package:loan_managment_app/utils/usersecurestorage.dart';
 
 import 'login.dart';
 
-class UserAccount extends StatelessWidget {
-  const UserAccount({super.key});
+class ViewArrears extends StatelessWidget {
+  const ViewArrears({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: ListTile(
-        title: TextButton(
-          onPressed: onPressed, 
-          child: const Text("Logout")),
-      )
+    return  const Scaffold(
+      body: Text("View Arrears"),
     );
   }
 

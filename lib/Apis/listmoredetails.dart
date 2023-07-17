@@ -51,10 +51,8 @@ Future<LoanData> fetchOneLoanData(int id) async {
     var url = Uri.parse(ApiEndPoints.baseUrl + ApiEndPoints.authEndPoints.getMoreLoanDetails(id));
     http.Response response = await http.get(url);
     if (response.statusCode == 200) {
-      print(response.body);
       var body = jsonDecode(response.body);
       LoanData loanData = LoanData.fromJson(body);
-      print(loanData.bikeNumber);
       return loanData;
     } else {
       errorMessage("Something went wrong");

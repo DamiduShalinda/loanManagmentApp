@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       
       debugShowCheckedModeBanner: false,
-      
+        
       home: const SafeArea(
         child: Scaffold(
         resizeToAvoidBottomInset: false,

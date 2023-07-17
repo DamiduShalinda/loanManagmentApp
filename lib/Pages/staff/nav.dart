@@ -1,27 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:loan_managment_app/Pages/staff/search.dart';
-import 'package:loan_managment_app/Pages/staff/user.dart';
+import 'package:loan_managment_app/Pages/staff/viewarrears.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home.dart';
+import 'login.dart';
 
 class NavPage extends StatefulWidget {
   const NavPage({super.key});
+
 
   @override
   State<NavPage> createState() => _NavPageState();
 }
 
 class _NavPageState extends State<NavPage> {
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-    HomeScreen(), Search() , UserAccount()
+    HomeScreen(), ViewArrears() ,Search()
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Loan Management App'),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              final SharedPreferences prefs = await _prefs;
+              prefs.clear();
+              Get.offAll(() => const Login());
+            },
+            icon: const Icon(Icons.logout),
+            ),
+        ],
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -55,12 +70,12 @@ class _NavPageState extends State<NavPage> {
                   text: 'Home',
                 ),
                 GButton(
-                  icon: Icons.search,
-                  text: 'Search',
+                  icon: Icons.payment,
+                  text: 'Arrears',
                 ),
                 GButton(
-                  icon: Icons.person,
-                  text: 'Profile',
+                  icon: Icons.description,
+                  text: 'All Loans',
                 ),
               ],
               selectedIndex: _selectedIndex,
