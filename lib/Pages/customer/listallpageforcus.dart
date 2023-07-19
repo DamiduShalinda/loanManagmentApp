@@ -26,11 +26,7 @@ class _ListallPageforCusState extends State<ListallPageforCus> {
       );
     }
     else {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text("Loan Payments"),
-        ),
-        body: ListView.builder(
+      return ListView.builder(
           itemCount: loanData.length,
           itemBuilder: (context, index) {
             return Card(
@@ -44,8 +40,7 @@ class _ListallPageforCusState extends State<ListallPageforCus> {
               ),
             );
           },
-        ),
-      );
+        );
     }
   }
 }

@@ -29,9 +29,9 @@ class LoanPaymentView extends StatelessWidget {
               TextButton(
                 style: TextButton.styleFrom(
                   padding: const EdgeInsets.all(10),
-                  primary: Colors.white,
+                  foregroundColor: Colors.white,
                   backgroundColor: Colors.blue,
-                  onSurface: Colors.grey,
+                  disabledForegroundColor: Colors.grey,
                 ),
                 onPressed: () => Navigator.pop(context), 
                 child: const Text("Close") ),

@@ -25,6 +25,7 @@ class _ViewArrearsState extends State<ViewArrears> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      backgroundColor: Colors.grey[100],
       body: FutureBuilder(
         future: fetchByAddress(staffName.assignedLocation),
         builder: (context , snapshot){

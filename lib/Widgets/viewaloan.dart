@@ -50,9 +50,9 @@ class ViewaLoan extends StatelessWidget {
                           Get.to(() => PaymentAlert(id: loanData.loanID));
                         },
                         style: TextButton.styleFrom(
-                          primary: Colors.white,
+                          foregroundColor: Colors.white,
                           backgroundColor: const Color.fromARGB(255, 21, 31, 44),
-                          onSurface: Colors.grey,
+                          disabledForegroundColor: Colors.grey,
                           elevation: 2
                           ), 
                         child: const Padding(
@@ -74,9 +74,9 @@ class ViewaLoan extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: TextButton(
               style: TextButton.styleFrom(
-                            primary: Colors.white,
+                            foregroundColor: Colors.white,
                             backgroundColor: const Color.fromARGB(255, 21, 31, 44),
-                            onSurface: Colors.grey,
+                            disabledForegroundColor: Colors.grey,
                             elevation: 2
                             ), 
               onPressed: () {
@@ -87,7 +87,7 @@ class ViewaLoan extends StatelessWidget {
                 child: Text("View Payments"),
               ),
               ),
-            )
+            ),
           ],
         ),
       )

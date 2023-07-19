@@ -28,7 +28,12 @@ class _LoanPaymentsListState extends State<LoanPaymentsList> {
           builder: (context , snapshot) {
           if (snapshot.hasData) {
             List<LoanPayments> loanData = snapshot.data!;
-            return ListallPageforCus(loanData: loanData);
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text("Loan Payments"),
+              ),
+              body: ListallPageforCus(loanData: loanData,),
+            );
           } else if (snapshot.hasError){
             return Text("Error : ${snapshot.error}");
           } else {
