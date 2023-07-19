@@ -59,3 +59,22 @@ Future<OneArrears> fetchOneArrearsData(int id) async {
     throw Exception(e.toString()); // Throw an exception to indicate an error
   }
 }
+
+
+Future <List<OneArrears>> fetchByAddress( String location){
+  var errorMessage = "".obs;
+  return http.get(Uri.parse(ApiEndPoints.baseUrl + ApiEndPoints.authEndPoints.getArrearsbyLocation(location)))
+      .then((http.Response response){
+    final List<OneArrears> oneArrears = [];
+    if (response.statusCode == 200){
+      var body = jsonDecode(response.body);
+      for (var item in body){
+        oneArrears.add(OneArrears.fromJson(item));
+      }
+      return oneArrears;
+    }else{
+      errorMessage("Something went wrong");
+      throw Exception("Something went wrong");
+    }
+  });
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loan_managment_app/Apis/getstaffidcontroller.dart';
 import 'package:loan_managment_app/Pages/staff/search.dart';
 import 'package:loan_managment_app/Pages/staff/viewarrears.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -9,7 +10,8 @@ import 'home.dart';
 import 'login.dart';
 
 class NavPage extends StatefulWidget {
-  const NavPage({super.key});
+  final int id;
+  const NavPage({super.key, required this.id});
 
 
   @override
@@ -17,29 +19,47 @@ class NavPage extends StatefulWidget {
 }
 
 class _NavPageState extends State<NavPage> {
+
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
-    HomeScreen(), ViewArrears() ,Search()
-  ];
+  late int id;
+
+  @override
+  void initState() {
+    super.initState();
+    id = widget.id;
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return FutureBuilder(
+      future: fetchStaffNameData(id),
+      builder: (context , snapshot) {
+        if (snapshot.hasData) {
+          StaffName staffName = snapshot.data!;
+          return Scaffold(
       appBar: AppBar(
-        title: const Text('Loan Management App'),
+        title: Text("Hello ${staffName.name} !!" ),
         actions: [
+          IconButton(
+              onPressed: () {}, 
+              icon: const Icon(Icons.light_mode_outlined)),
+          const SizedBox(width: 10,),
           IconButton(
             onPressed: () async {
               final SharedPreferences prefs = await _prefs;
               prefs.clear();
               Get.offAll(() => const Login());
             },
-            icon: const Icon(Icons.logout),
+            icon: const Icon(Icons.logout_outlined),
             ),
         ],
       ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: <Widget>[
+          const HomeScreen(), 
+          ViewArrears(staffName: staffName,),
+          const Search()
+            ].elementAt(_selectedIndex),
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -89,5 +109,10 @@ class _NavPageState extends State<NavPage> {
         ),
       ),
     );
+        } else {
+          return const Center(child: CircularProgressIndicator());
+        }
+      }
+      );
   }
 }

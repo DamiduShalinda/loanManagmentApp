@@ -12,4 +12,5 @@ class AuthEndPoints {
   String getOneArrears(int id) => 'arrears/getbyloanid/$id';
   final String makeapayment = 'loanvalues/update/';
   String getStaffName(int id ) => 'staff/get/$id';
+  String getArrearsbyLocation(String location) => 'arrears/getbylocation/?location=$location';
 }

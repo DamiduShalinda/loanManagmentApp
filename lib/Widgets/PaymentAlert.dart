@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import  'package:intl/intl.dart';
 import 'package:loan_managment_app/Apis/makeapaymentcontroller.dart';
 
@@ -22,14 +22,28 @@ class _PaymentAlertState extends State<PaymentAlert> {
   void initState() {
     super.initState();
     id = widget.id;
+    _paymentDetails = PaymentDetails(paymentDate: cdate, paymentAmount: 0, loanNumber: 0);
   }
 
   void _updateValues(context) {
     _paymentDetails.loanNumber = id;
-    _paymentDetails.paymentDate = cdate;
+    _paymentDetails.paymentDate = cdate.toString();
     _paymentDetails.paymentAmount =  int.parse(_amountController.text);
-    Navigator.pop(context, 'OK');
-    sendPaymentDetails(_paymentDetails);
+    if (_paymentDetails.paymentAmount == 0) {
+      Fluttertoast.showToast(
+        msg: 'Complete the Transaction',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+      );
+    } else {
+      Fluttertoast.showToast(
+        msg: 'Payment Successful',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+      );
+      Navigator.pop(context, 'OK');
+      sendPaymentDetails(_paymentDetails);
+    }
     }
 
   @override

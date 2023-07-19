@@ -11,8 +11,6 @@ import 'package:http/http.dart' as http;
 import 'package:loan_managment_app/utils/usersecurestorage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../Pages/customer/navforcustomer.dart';
-
 
 class LogInController extends GetxController {
    TextEditingController usernameController = TextEditingController();
@@ -46,7 +44,7 @@ class LogInController extends GetxController {
         if (decodedToken['usertype'] == 'customer'){
             Get.off(() => HomescreenCustomer(id: decodedToken['user_id']));
         }else if (decodedToken['usertype'] == 'staff'){
-            Get.off(() => const NavPage());
+            Get.off(() =>  NavPage(id: decodedToken['user_id']));
         }
       }else {
         usernameController.clear();

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loan_managment_app/Apis/getonearrears.dart';
+import 'package:loan_managment_app/Apis/getarrears.dart';
 
 class ViewOneArrears extends StatefulWidget {
   final int id;

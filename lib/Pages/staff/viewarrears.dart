@@ -1,22 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_core/get_core.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:loan_managment_app/utils/usersecurestorage.dart';
+import 'package:loan_managment_app/Apis/getarrears.dart';
+import 'package:loan_managment_app/Apis/getstaffidcontroller.dart';
+import 'package:loan_managment_app/Widgets/listarrears.dart';
 
-import 'login.dart';
+class ViewArrears extends StatefulWidget {
 
-class ViewArrears extends StatelessWidget {
-  const ViewArrears({super.key});
+  final StaffName staffName;
+  const ViewArrears({super.key, required this.staffName});
+
+  @override
+  State<ViewArrears> createState() => _ViewArrearsState();
+}
+
+class _ViewArrearsState extends State<ViewArrears> {
+
+  late StaffName staffName;
+
+  @override
+  void initState() {
+    super.initState();
+    staffName = widget.staffName;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return  const Scaffold(
-      body: Text("View Arrears"),
+    return  Scaffold(
+      body: FutureBuilder(
+        future: fetchByAddress(staffName.assignedLocation),
+        builder: (context , snapshot){
+          if (snapshot.hasData) {
+            List<OneArrears> arrearsData = snapshot.data!;
+            return ListArrears(arrearsData: arrearsData);
+          }
+          else if (snapshot.hasError){
+            return Text("Error : ${snapshot.error}");
+        }else{
+          return const CircularProgressIndicator();
+        }
+        }
+        ),
     );
   }
 
-  void onPressed() {
-    UserSecureStorage.deleteTokens();
-    Get.offAll(() => const Login());
-    }
 }
