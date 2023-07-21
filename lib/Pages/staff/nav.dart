@@ -6,6 +6,7 @@ import 'package:loan_managment_app/Pages/staff/viewarrears.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../Widgets/viewallcustomers.dart';
 import 'home.dart';
 import 'login.dart';
 
@@ -58,7 +59,8 @@ class _NavPageState extends State<NavPage> {
         child: <Widget>[
           const HomeScreen(), 
           ViewArrears(staffName: staffName,),
-          const Search()
+          const Search(),
+          const ViewAllCustomers(),
             ].elementAt(_selectedIndex),
       ),
       bottomNavigationBar: Container(
@@ -96,6 +98,10 @@ class _NavPageState extends State<NavPage> {
                 GButton(
                   icon: Icons.description,
                   text: 'All Loans',
+                ),
+                GButton(
+                  icon: Icons.group,
+                  text: 'All Customers',
                 ),
               ],
               selectedIndex: _selectedIndex,

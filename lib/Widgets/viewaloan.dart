@@ -4,7 +4,7 @@ import 'package:loan_managment_app/Apis/getcustomerloancontroller.dart';
 import 'package:loan_managment_app/Widgets/PaymentAlert.dart';
 import 'package:loan_managment_app/Widgets/loanpaymentlist.dart';
 
-import 'ViewOneArrears.dart';
+import 'viewonearrears.dart';
 
 class ViewaLoan extends StatelessWidget {
   final CustomerLoanData loanData;

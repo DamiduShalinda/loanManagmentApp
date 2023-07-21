@@ -14,4 +14,6 @@ class AuthEndPoints {
   String getStaffName(int id ) => 'staff/get/$id';
   String getArrearsbyLocation(String location) => 'arrears/getbylocation/?location=$location';
   String getLoanbyLoanNum (String loanNumber) => 'loans/getbylnum/$loanNumber';
+  final String getallcustomernames = 'customers/getnames';
+  String getOneCustomer(int id) => 'customers/getone/$id';
 }

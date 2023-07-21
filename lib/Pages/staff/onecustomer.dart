@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:loan_managment_app/Apis/listmoredetails.dart';
+import 'package:loan_managment_app/Apis/getonecustomer.dart';
 import 'package:loan_managment_app/Pages/customer/moredetails.dart';
 
-class OneLoan extends StatefulWidget {
+class OneCustomer extends StatefulWidget {
   final int id;
-  const OneLoan({super.key, required this.id});
+  const OneCustomer({super.key, required this.id});
 
   @override
-  State<OneLoan> createState() => _OneLoanState();
+  State<OneCustomer> createState() => _OneCustomerState();
 }
 
-class _OneLoanState extends State<OneLoan> {
+class _OneCustomerState extends State<OneCustomer> {
 
   late int id;
 
@@ -19,15 +19,16 @@ class _OneLoanState extends State<OneLoan> {
     super.initState();
     id = widget.id;
   }
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       body: FutureBuilder(
-        future: fetchOneLoanData(id) ,
-        builder: (BuildContext context ,  AsyncSnapshot<LoanData> snapshot){
+        future: fetchOneCustomer(id) ,
+        builder: (BuildContext context , snapshot){
           if (snapshot.hasData) {
-            final loanData = snapshot.data!;
-            return MoreDetails(loanData: loanData);
+            final onecustomer = snapshot.data!;
+            return MoreCustomerDetails(oneCustomer: onecustomer);
           } else if (snapshot.hasError){
             return Text("Error : ${snapshot.error}");
           } else {

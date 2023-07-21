@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loan_managment_app/Widgets/listPayments.dart';
+import 'package:loan_managment_app/Widgets/listpayments.dart';
 import '../../modals/loanpaymentsmodal.dart';
 
 class DetailsCustomer extends StatefulWidget {

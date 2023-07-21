@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:loan_managment_app/Pages/customer/homescreencustomer.dart';
@@ -49,6 +49,15 @@ class LogInController extends GetxController {
       }else {
         usernameController.clear();
         passwordController.clear();
+        Fluttertoast.showToast(
+            msg: "Invalid Credentials",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: const Color.fromARGB(255, 21, 31, 44),
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
       }
 
     }catch(e){

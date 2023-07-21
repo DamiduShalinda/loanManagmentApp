@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loan_managment_app/Apis/logincontroller.dart';
 
@@ -21,19 +22,18 @@ class _LoginState extends State<Login> {
       backgroundColor: const Color.fromARGB(255, 21, 31, 44)	,
       resizeToAvoidBottomInset: false,
       body:  Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          // SvgPicture.asset(
-          //   assetName,
-          //   colorFilter: const ColorFilter.mode(Colors.yellow, BlendMode.srcIn),
-          //   semanticsLabel: 'A red up arrow',
-          //   width: 150,
-          //   height: 150,
-          //   ),
-          // SizedBox(
-          //   height: MediaQuery.of(context).size.height * 0.05,
-          // ),
-          
+          Padding(
+            padding: const EdgeInsets.only(top: 100.0),
+            child: Center(
+              child: SizedBox(
+                width: 150.0,
+                height: 150.0,
+                child: SvgPicture.asset(assetName , color: Colors.yellow,),
+              ),
+            ),
+          ),
            Padding(
              padding: const EdgeInsets.symmetric(vertical: 20.0 , horizontal: 30.0),
              child: Theme(
@@ -120,6 +120,17 @@ class _LoginState extends State<Login> {
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Text(
+          "Contact us at: 1234567890",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.yellow,
+            fontSize: 15.0,
+          ),
+          ),
       ),
       
     );

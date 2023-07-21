@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:loan_managment_app/Pages/staff/oneloan.dart';
 import 'package:loan_managment_app/Widgets/PaymentAlert.dart';
 
 import '../modals/loanmodal.dart'; // Import the file where the Loan model is defined
@@ -25,10 +24,6 @@ class LoanListView extends StatelessWidget {
             ),
           ),
             child: ListTile(
-              onTap: () => showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) =>  OneLoan(id: int.parse(loan.loanId))
-                ),
               titleTextStyle: const TextStyle(
                 color: Colors.black,
                 fontSize: 20,

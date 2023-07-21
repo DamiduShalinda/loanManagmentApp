@@ -5,8 +5,6 @@ import 'package:loan_managment_app/Widgets/viewoneloan.dart';
 
 import '../Apis/getarrears.dart';
 
-
-
 class ListArrears extends StatefulWidget {
   final List<OneArrears> arrearsData;
   const ListArrears({super.key, required this.arrearsData});
@@ -16,7 +14,6 @@ class ListArrears extends StatefulWidget {
 }
 
 class _ListArrearsState extends State<ListArrears> {
-
   late List<OneArrears> arrearsData;
   late List<OneArrears> filteredArrearsData;
 
@@ -33,9 +30,10 @@ class _ListArrearsState extends State<ListArrears> {
       results = arrearsData;
     } else {
       results = arrearsData
-        .where((arrears) => arrears.loanId.toLowerCase()
-        .contains(enteredKeyword.toLowerCase()))
-        .toList();
+          .where((arrears) => arrears.loanId
+              .toLowerCase()
+              .contains(enteredKeyword.toLowerCase()))
+          .toList();
     }
     setState(() {
       filteredArrearsData = results;
@@ -46,47 +44,37 @@ class _ListArrearsState extends State<ListArrears> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-         Padding(
+        Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
           child: TextField(
             onChanged: (value) {
-              // setState(() {
-              //   filteredArrearsData = arrearsData.where((arrears) => arrears.loanId.toLowerCase().contains(value.toLowerCase())).toList();
-              // });
               _runfilter(value);
             },
             decoration: const InputDecoration(
-              hintText: "Search by Loan ID",
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(5.0))
-              )
-            ),
+                hintText: "Search by Loan ID",
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)))),
           ),
         ),
         Expanded(
           child: ListView.builder(
-            itemCount: filteredArrearsData.length,
-            itemBuilder: (context , index){
-              OneArrears arrears = filteredArrearsData[index];
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-                child: Card(
-                  child: Column(
-                    children: [
-                      ListTile(
+              itemCount: filteredArrearsData.length,
+              itemBuilder: (context, index) {
+                OneArrears arrears = filteredArrearsData[index];
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12.0, vertical: 8.0),
+                  child: Card(
+                    child: Column(
+                      children: [
+                        ListTile(
                           titleTextStyle: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 15,
-                            height: 2
-                          ),
-                          
-                          title: Text(
-                              'Loan ID: ${arrears.loanId}\n'
+                              color: Colors.black, fontSize: 15, height: 2),
+                          title: Text('Loan ID: ${arrears.loanId}\n'
                               'Monthly Arrears: ${arrears.monthlyArrears.toStringAsFixed(2)}\n'
-                              'Arrears Months: ${(arrears.monthlyArrears/arrears.monthlyPayment).toStringAsFixed(2)}\n'
-                              'Arrears Calculated Date: ${arrears.arrCalDate}'
-                              ),
+                              'Arrears Months: ${(arrears.monthlyArrears / arrears.monthlyPayment).toStringAsFixed(2)}\n'
+                              'Arrears Calculated Date: ${arrears.arrCalDate}'),
                           leading: const Icon(Icons.money),
                         ),
                         Row(
@@ -95,29 +83,29 @@ class _ListArrearsState extends State<ListArrears> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextButton(
-                                onPressed: (){
-                                  Get.to(() => ViewOneLoan(loanNumber: arrears.loanId,));
-                                }, 
-                                child: const Text("View Loan Details")
-                                ),
+                                  onPressed: () {
+                                    Get.to(() => ViewOneLoan(
+                                          loanNumber: arrears.loanId,
+                                        ));
+                                  },
+                                  child: const Text("View Loan Details")),
                             ),
-                            const SizedBox(width: 10,),
+                            const SizedBox(
+                              width: 10,
+                            ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextButton(
-                                onPressed: (){}, 
-                                child: const Text("View Customer Details")
-                                ),
+                                  onPressed: () {},
+                                  child: const Text("View Customer Details")),
                             ),
                           ],
                         )
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              );
-            }
-        
-            ),
+                );
+              }),
         ),
       ],
     );
