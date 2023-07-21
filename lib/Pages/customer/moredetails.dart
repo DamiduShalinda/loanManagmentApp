@@ -60,79 +60,15 @@ class _MoreCustomerDetailsState extends State<MoreCustomerDetails> {
                    SliverList(
           delegate: SliverChildListDelegate(
             [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    oneCustomer.address,
-                    style: textStyle,
-                  ),
-                  Text(
-                    oneCustomer.telephone1,
-                    style: textStyle,
-                  ),
-                ],
-              ),
+              const SizedBox(height: 10,),
               // Add additional text for scrolling here
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text( "Customer Details", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),	
-                ),
-              const Divider(),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text( "Name", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),	
-                ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text( oneCustomer.name,),	
-                ),
-              const Divider(),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text( "Address", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),	
-                ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text( oneCustomer.address,),	
-                ),
-              const Divider(),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text( "Telephone 1", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),	
-                ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text( oneCustomer.telephone1,),	
-                ),
-              const Divider(),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text( "Telephone 2", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),	
-                ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text( oneCustomer.telephone2,),	
-                ),
-              const Divider(),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text( "Date of Birth", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),	
-                ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text( oneCustomer.dateofbirth,),	
-                ),
-              const Divider(),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text( "NIC Number", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),	
-                ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text( oneCustomer.nicnumber,),	
-                ),
-              const Divider(),
+                   _buildDetailItem("Name", Icons.person, oneCustomer.name),
+                    _buildDetailItem("Address", Icons.location_on, oneCustomer.address),
+                    _buildDetailItem("Telephone 1", Icons.phone, oneCustomer.telephone1),
+                    _buildDetailItem("Telephone 2", Icons.phone, oneCustomer.telephone2),
+                    _buildDetailItem("Date of Birth", Icons.calendar_today, oneCustomer.dateofbirth),
+                    _buildDetailItem("NIC Number", Icons.credit_card, oneCustomer.nicnumber),
+                  
               
              
               // Add more text or widgets as needed
@@ -150,36 +86,39 @@ class _MoreCustomerDetailsState extends State<MoreCustomerDetails> {
   Widget _buildDetailItem(String label, IconData icon, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Row(
-        children: [
-          Icon(
-            icon,
-            size: 24,
-            color: Colors.grey,
-          ),
-          const SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                label,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              size: 24,
+              color: Colors.grey,
+            ),
+            const SizedBox(width: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                value,
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.black87,
+                const SizedBox(height: 4),
+                Text(
+                  value,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.black87,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
