@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loan_managment_app/Apis/getstaffidcontroller.dart';
 import 'package:loan_managment_app/Pages/staff/search.dart';
-import 'package:loan_managment_app/Pages/staff/viewarrears.dart';
+import 'package:loan_managment_app/Widgets/viewarrears.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

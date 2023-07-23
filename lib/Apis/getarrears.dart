@@ -10,7 +10,7 @@ class OneArrears {
   double monthlyArrears;
   String arrCalDate;
   double additionalFees;
-  int staff;
+  int? staff;
   int loanValues;
 
   OneArrears({
@@ -20,7 +20,7 @@ class OneArrears {
       required this.monthlyArrears,
       required this.arrCalDate,
       required this.additionalFees,
-      required this.staff,
+      this.staff,
       required this.loanValues
       });
 

@@ -16,4 +16,5 @@ class AuthEndPoints {
   String getLoanbyLoanNum (String loanNumber) => 'loans/getbylnum/$loanNumber';
   final String getallcustomernames = 'customers/getnames';
   String getOneCustomer(int id) => 'customers/getone/$id';
+  String updateProfilePicture(int id) => 'customers/getone/$id/update';
 }
