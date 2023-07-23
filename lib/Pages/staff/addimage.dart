@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:loan_managment_app/Widgets/viewallcustomers.dart';
 import 'package:loan_managment_app/api_endpoints.dart';
 
 class AddImage extends StatefulWidget {

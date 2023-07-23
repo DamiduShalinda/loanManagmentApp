@@ -22,6 +22,7 @@ class _ListLoansState extends State<ListLoans> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       body:  Center(
         child: FutureBuilder(
           future: fetchList(),

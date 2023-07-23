@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:loan_managment_app/Widgets/handlingcustomerid.dart';
 import 'package:loan_managment_app/Widgets/viewoneloan.dart';
 
 import '../Apis/getarrears.dart';
@@ -96,7 +97,12 @@ class _ListArrearsState extends State<ListArrears> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.to(() => GetCustomerId(
+                                          loanNumber: arrears.loanId,
+                                        ));
+                                    
+                                    },
                                   child: const Text("View Customer Details")),
                             ),
                           ],

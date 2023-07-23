@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loan_managment_app/Apis/getonecustomer.dart';
-import 'package:loan_managment_app/Pages/customer/moredetails.dart';
+import 'package:loan_managment_app/Pages/customer/morecustomerdetails.dart';
 
 class OneCustomer extends StatefulWidget {
   final int id;

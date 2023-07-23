@@ -11,7 +11,7 @@ class OneArrears {
   String arrCalDate;
   double additionalFees;
   int? staff;
-  int loanValues;
+  int? loanValues;
 
   OneArrears({
       required this.id,
@@ -21,7 +21,7 @@ class OneArrears {
       required this.arrCalDate,
       required this.additionalFees,
       this.staff,
-      required this.loanValues
+      this.loanValues
       });
 
   factory OneArrears.fromJson(Map<String, dynamic> json) {
