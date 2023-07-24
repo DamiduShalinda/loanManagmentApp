@@ -19,7 +19,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: const Color.fromARGB(255, 21, 31, 44)	,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       resizeToAvoidBottomInset: false,
       body:  Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -97,7 +97,7 @@ class _LoginState extends State<Login> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   
-                  backgroundColor: Colors.yellow,
+                  backgroundColor: Theme.of(context).colorScheme.tertiary,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
@@ -108,11 +108,11 @@ class _LoginState extends State<Login> {
                   logInController.logInWithUsername();
                   _submitForm();
                   },
-                child: const Text(
+                child:  Text(
                   'Login',
                   style: TextStyle(
                     fontSize: 15,
-                    color: Color(0xff15202b),
+                    color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.w900,
                   ),
                   ),

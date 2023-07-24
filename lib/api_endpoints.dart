@@ -1,5 +1,6 @@
 class ApiEndPoints {
   static const String baseUrl = "http://10.0.2.2:8000/";
+  // static const String baseUrl = "https://rarely-worthy-gopher.ngrok-free.app/";
   static AuthEndPoints authEndPoints = AuthEndPoints();
 }
 
