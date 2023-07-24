@@ -78,8 +78,7 @@ class _ListCustomersState extends State<ListCustomers> {
                       horizontal: 16.0,
                       vertical: 8.0), // Padding between content
                   leading: CircleAvatar(
-                    backgroundColor: Colors.deepPurple[
-                        400], // Slightly lighter purple for the circular avatar background
+                    backgroundColor: Theme.of(context).colorScheme.primary, 
                     child: Text(
                       customerNameID.name[0], // Display the first character of the name
                       style: const TextStyle(color: Colors.white),
@@ -92,9 +91,9 @@ class _ListCustomersState extends State<ListCustomers> {
                       color: Colors.black, // White text color
                     ),
                   ),
-                  trailing: const Icon(
+                  trailing:  Icon(
                     Icons.arrow_forward_ios,
-                    color: Colors.deepPurple, // White arrow icon color
+                    color: Theme.of(context).colorScheme.primary, // White arrow icon color
                   ),
                   onTap: () {
                     Get.to(() => OneCustomer(

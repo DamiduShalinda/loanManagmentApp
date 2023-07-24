@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loan_managment_app/Apis/getcustomerloancontroller.dart';
 import 'package:loan_managment_app/Widgets/PaymentAlert.dart';
+import 'package:loan_managment_app/Widgets/handlingcustomerid.dart';
 import 'package:loan_managment_app/Widgets/loanpaymentlist.dart';
 
 import 'viewonearrears.dart';
@@ -45,6 +46,7 @@ class ViewaLoan extends StatelessWidget {
                         ),
                         ),
                       const SizedBox(height: 10,),
+                     
                       TextButton(
                         onPressed: (){
                           Get.to(() => PaymentAlert(id: loanData.loanID));
@@ -65,17 +67,37 @@ class ViewaLoan extends StatelessWidget {
                 ),
               ),
             ),
+            
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
               child: ViewOneArrears(id: loanData.loanID)
             ),
             const Expanded(child: SizedBox(height: 10)),
+            
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextButton(
               style: TextButton.styleFrom(
                             foregroundColor: Colors.white,
-                            backgroundColor: const Color.fromARGB(255, 21, 31, 44),
+                            backgroundColor: Theme.of(context).colorScheme.primary,
+                            disabledForegroundColor: Colors.grey,
+                            elevation: 2
+                            ), 
+              onPressed: () {
+                    Get.to(() => GetCustomerId(loanNumber: loanData.loannumber));
+              }, 
+              child: const Padding(
+                padding: EdgeInsets.symmetric(vertical: 3.0),
+                child: Text("View Customer Details"),
+              ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextButton(
+              style: TextButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor: Theme.of(context).colorScheme.primary,
                             disabledForegroundColor: Colors.grey,
                             elevation: 2
                             ), 

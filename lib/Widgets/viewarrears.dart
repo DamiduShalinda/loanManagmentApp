@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:loan_managment_app/Apis/getarrears.dart';
 import 'package:loan_managment_app/Apis/getstaffidcontroller.dart';
 import 'package:loan_managment_app/Widgets/listarrears.dart';

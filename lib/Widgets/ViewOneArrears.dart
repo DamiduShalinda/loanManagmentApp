@@ -31,6 +31,10 @@ class _ViewOneArrearsState extends State<ViewOneArrears> {
                     builder: (context , snapshot) {
                       if (snapshot.hasData){
                         final arrearsData = snapshot.data!;
+                        if (arrearsData.monthlyArrears == 0) {
+                          return const Text("No Arrears");
+                        }
+                        else {  
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
@@ -57,6 +61,7 @@ class _ViewOneArrearsState extends State<ViewOneArrears> {
                             const SizedBox(height: 10,),
                           ],
                         );
+                        }
                       }else if (snapshot.hasError){
                         return const Text("No Arrears");
                       }else{

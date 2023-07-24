@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'Pages/staff/login.dart';
+import 'package:loan_managment_app/AuthChecker.dart';
 
 void main() {
   runApp
@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: const Color.fromARGB(255, 21, 31, 44),
           secondary: Colors.grey[100],
+          tertiary: Colors.yellow,
         )
       ),
       
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       home: const SafeArea(
         child: Scaffold(
         resizeToAvoidBottomInset: false,
-          body: Login(),
+          body: AuthChecker(),
       ),)
     );
   }
