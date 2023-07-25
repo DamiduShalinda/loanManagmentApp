@@ -168,9 +168,55 @@ class ViewaLoan extends StatelessWidget {
               ),
               ),
             ),
+             Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                elevation: 3,
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primary,
+                    border: Border.all(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary, // Choose your border color
+                      width: 2.0, // Choose your border width
+                    ),
+                    borderRadius: BorderRadius.circular(
+                        15.0), // Choose your border radius
+                  ),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Proceed To a Payment",
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.secondary),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.arrow_forward,
+                            size: 23,
+                            color: Theme.of(context).colorScheme.secondary,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
           ],
         ),
       )
     );
   }
 }
+

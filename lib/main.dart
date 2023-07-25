@@ -20,9 +20,10 @@ class MyApp extends StatelessWidget {
       
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: HexColor('#1E2022'),
-          secondary: Colors.grey[100],
-          tertiary:  HexColor('#C9D6DF'),
+          primary: HexColor('#222831'),
+          secondary: HexColor('#EEEEEE'),
+          tertiary:  HexColor('#FFD369'),
+          onPrimaryContainer: HexColor('#393E46')
         )
       ),
       
