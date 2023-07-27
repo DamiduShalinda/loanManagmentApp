@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:loan_managment_app/Pages/customer/details.dart';
+import 'package:loan_managment_app/Pages/customer/homeScreen/homescreenfuture.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../staff/login.dart';
-import 'homescreencustomer.dart';
+import 'homeScreen/homescreencustomer.dart';
 
 class NavPageCustomer extends StatefulWidget {
   final int id;
@@ -32,7 +33,7 @@ class _NavPageCustomerState extends State<NavPageCustomer> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _widgetOptions = <Widget>[
-      HomescreenCustomer(id: id),
+      HomeScreenFuture(id: id),
       const DetailsCustomer(),
     ];
   }

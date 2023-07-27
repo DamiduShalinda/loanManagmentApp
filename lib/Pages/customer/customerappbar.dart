@@ -16,43 +16,26 @@ class CustomerAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      elevation: 2,
-      toolbarTextStyle: const TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-      ),
-      backgroundColor: Theme.of(context).colorScheme.secondary,
-      title: Container(
-        alignment: Alignment.centerLeft,
-        child: ListTile(
-          onTap: () {},
-          contentPadding: const EdgeInsets.fromLTRB(10, 20, 0, 7),
-          leading: SvgPicture.asset(
-              'assets/logo.svg',
-              color: Theme.of(context).colorScheme.primary,
-              width: 55,
-              height: 55,
-            ),
-          title: const Text(
-            "Hasaru Enterprises",
-            style: TextStyle(
-              fontSize: 23,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          trailing: IconButton(
+      leadingWidth: 100,
+      elevation: 0,
+      titleTextStyle: TextStyle(
+          color: Theme.of(context).colorScheme.secondary, fontSize: 18, fontWeight: FontWeight.w200),
+      backgroundColor: Colors.transparent,
+      title: const Text("Hasaru Enterprices"),
+      actions: [
+        IconButton(
           onPressed: () async {
             final SharedPreferences prefs = await _prefs;
             prefs.clear();
             Get.offAll(() => const Login());
           },
-          icon: Icon(
-            Icons.logout,
-            color: Theme.of(context).colorScheme.primary,
-          ),
+          icon: const Icon(Icons.logout),
+          color: Theme.of(context).colorScheme.secondary,
         ),
-          ),
-      ),
+        const SizedBox(
+          width: 10,
+        )
+      ],
       
     );
   }

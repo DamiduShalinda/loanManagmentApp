@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:loan_managment_app/Pages/customer/homescreencustomer.dart';
+import 'package:loan_managment_app/Pages/customer/homeScreen/homescreenfuture.dart';
 import 'package:loan_managment_app/Pages/staff/nav.dart';
 import 'package:loan_managment_app/api_endpoints.dart';
 import 'package:http/http.dart' as http;
@@ -42,7 +42,7 @@ class LogInController extends GetxController {
         await prefs.setString('usertype', decodedToken['usertype']);
 
         if (decodedToken['usertype'] == 'customer'){
-            Get.off(() => HomescreenCustomer(id: decodedToken['user_id']));
+            Get.off(() => HomeScreenFuture(id: decodedToken['user_id']));
         }else if (decodedToken['usertype'] == 'staff'){
             Get.off(() =>  NavPage(id: decodedToken['user_id']));
         }

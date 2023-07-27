@@ -1,9 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:loan_managment_app/Pages/customer/homeScreen/homescreenfuture.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'Pages/customer/homescreencustomer.dart';
 import 'Pages/staff/login.dart';
 import 'Pages/staff/nav.dart';
 
@@ -19,7 +18,7 @@ class AuthChecker extends StatelessWidget {
           DecodedToken decodedToken = snapshot.data!;
           int id = (decodedToken.userid!);
           if (decodedToken.usertype == 'customer') {
-            return  HomescreenCustomer(id: id);
+            return  HomeScreenFuture(id: id);
           } else if (decodedToken.usertype == 'staff') {
             return NavPage(id: id);
           } else {
