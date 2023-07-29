@@ -1,6 +1,6 @@
 class ApiEndPoints {
-  // static const String baseUrl = "http://10.0.2.2:8000/";
-  static const String baseUrl = "https://rarely-worthy-gopher.ngrok-free.app/";
+  static const String baseUrl = "http://10.0.2.2:8000/";
+  // static const String baseUrl = "https://rarely-worthy-gopher.ngrok-free.app/";
   static AuthEndPoints authEndPoints = AuthEndPoints();
 }
 
@@ -20,4 +20,6 @@ class AuthEndPoints {
   String updateProfilePicture(int id) => 'customers/getone/$id/update';
   String getCustomerId(String loanNumber) => 'loans/getname/$loanNumber';
   String getHomeScreenData(int id) => '/customers/getone/$id/home';
+  String getStaffHomeScreenData(int id) => '/staff/getbyid/$id';
+  
 }

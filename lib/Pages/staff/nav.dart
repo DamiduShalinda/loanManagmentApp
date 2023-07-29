@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loan_managment_app/Apis/getstaffidcontroller.dart';
+import 'package:loan_managment_app/Pages/staff/homestaff/staffhomefuture.dart';
 import 'package:loan_managment_app/Pages/staff/search.dart';
 import 'package:loan_managment_app/Widgets/viewarrears.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Widgets/viewallcustomers.dart';
-import 'home.dart';
+import 'homestaff/home.dart';
 import 'login.dart';
 
 class NavPage extends StatefulWidget {
@@ -39,7 +40,10 @@ class _NavPageState extends State<NavPage> {
           StaffName staffName = snapshot.data!;
           return Scaffold(
       appBar: AppBar(
-        title: Text("Hello ${staffName.name} !!" ),
+        toolbarHeight: 90,
+       titleTextStyle: TextStyle(
+          color: Theme.of(context).colorScheme.secondary, fontSize: 20, fontWeight: FontWeight.w300 , letterSpacing: 1.5),
+          title: const Text("Hasaru  Enterprises"),
         actions: [
           IconButton(
               onPressed: () {}, 
@@ -57,7 +61,7 @@ class _NavPageState extends State<NavPage> {
       ),
       body: Center(
         child: <Widget>[
-          const HomeScreen(), 
+          StaffHomeFuture(id: id), 
           ViewArrears(staffName: staffName,),
           const Search(),
           const ViewAllCustomers(),
