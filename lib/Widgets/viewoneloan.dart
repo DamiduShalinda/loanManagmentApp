@@ -44,7 +44,7 @@ class _ViewOneLoanState extends State<ViewOneLoan> {
         } else if (snapshot.hasError){
           return Text("Error : ${snapshot.error}");
       } else {
-        return const CircularProgressIndicator();
+        return const Scaffold(body: CircularProgressIndicator());
       }
       }
       );

@@ -14,8 +14,6 @@ class OneCustomerDetails {
   String dateofbirth;
   String nicnumber;
   String? profileimage;
-  String? nicimagefront;
-  String? nicimageback;
   int? user;
 
   OneCustomerDetails(
@@ -28,8 +26,6 @@ class OneCustomerDetails {
       required this.dateofbirth,
       required this.nicnumber,
       this.profileimage,
-      this.nicimagefront,
-      this.nicimageback,
       this.user});
 
   factory OneCustomerDetails.fromJson(Map<String, dynamic> json) {
@@ -43,15 +39,12 @@ class OneCustomerDetails {
       dateofbirth : json['dateofbirth'],
       nicnumber : json['nicnumber'],
       profileimage : json['profileimage'],
-      nicimagefront : json['nicimagefront'],
-      nicimageback : json['nicimageback'],
       user : json['user'],
     );
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
     data['name'] = name;
     data['surname'] = surname;
     data['address'] = address;
@@ -60,8 +53,6 @@ class OneCustomerDetails {
     data['dateofbirth'] = dateofbirth;
     data['nicnumber'] = nicnumber;
     data['profileimage'] = profileimage;
-    data['nicimagefront'] = nicimagefront;
-    data['nicimageback'] = nicimageback;
     data['user'] = user;
     return data;
   }
@@ -72,6 +63,7 @@ Future<OneCustomerDetails> fetchOneCustomer (int id) async {
   try {
     var url = Uri.parse(ApiEndPoints.baseUrl + ApiEndPoints.authEndPoints.getOneCustomer(id));
      http.Response response = await http.get(url);
+     print(response.body);
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       OneCustomerDetails oneCustomer = OneCustomerDetails.fromJson(body);

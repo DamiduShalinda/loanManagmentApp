@@ -35,6 +35,7 @@ Future<StaffName> fetchStaffNameData(int id) async {
   try {
     var url = Uri.parse(ApiEndPoints.baseUrl + ApiEndPoints.authEndPoints.getStaffName(id));
     http.Response response = await http.get(url);
+    print(response.body);
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       StaffName staffName = StaffName.fromJson(body);

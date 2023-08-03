@@ -32,6 +32,7 @@ class CustomerId {
 Future<CustomerId> fetchOneCustomerId(String loanNumber) async {
   var url = Uri.parse(ApiEndPoints.baseUrl + ApiEndPoints.authEndPoints.getCustomerId(loanNumber));
   http.Response response = await http.get(url);
+  print(response.body);
   if (response.statusCode == 200) {
     return CustomerId.fromJson(jsonDecode(response.body));
   } else {
